@@ -1,0 +1,41 @@
+{
+    "name": "yuubit/stream",
+    "type": "library",
+    "description": "PHP Library to deal with streams.",
+    "keywords": [
+        "stream",
+        "input",
+        "output",
+        "oop-library"
+    ],
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Felix Marezki",
+            "email": "felix@yuubit.de",
+            "homepage": "http://yuubit.de",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Yuubit\\Stream\\": "src/main/php/Yuubit/Stream"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yuubit\\Stream\\": "src/test/php/Yuubit/Stream"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0",
+        "yuubit/uri": "1.0.1"
+    },
+    "require-dev": {
+        "php": ">=7.1",
+        "phpunit/phpunit": "6.*",
+        "phpstan/phpstan": "0.9.*"
+    }
+}
