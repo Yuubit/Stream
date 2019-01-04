@@ -9,7 +9,7 @@
         "oop-library"
     ],
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.0.0-alpha",
     "authors": [
         {
             "name": "Felix Marezki",
@@ -31,7 +31,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.0",
-        "yuubit/uri": "1.0.1"
+        "yuubit/uri": "1.0.1",
+        "ext-sockets": "*"
     },
     "require-dev": {
         "php": ">=7.1",
