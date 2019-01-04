@@ -10,9 +10,24 @@ namespace Yuubit\Stream\Input;
 
 
 use Yuubit\Stream\IInputStream;
+use Yuubit\URI\URI;
 
 class FileStream implements IInputStream
 {
+
+    /**
+     * @var URI
+     */
+    private $uri;
+
+    /**
+     * FileStream constructor.
+     * @param URI $uri
+     */
+    public function __construct(URI $uri)
+    {
+        $this->uri = $uri;
+    }
 
     function close()
     {

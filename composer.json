@@ -31,7 +31,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.0",
-        "yuubit/uri": "1.0.1",
+        "yuubit/uri": "1.1.0",
         "ext-sockets": "*"
     },
     "require-dev": {
