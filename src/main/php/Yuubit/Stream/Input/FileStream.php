@@ -12,44 +12,10 @@ namespace Yuubit\Stream\Input;
 use Yuubit\Stream\IInputStream;
 use Yuubit\URI\URI;
 
-class FileStream implements IInputStream
+class FileStream extends AbstractStream
 {
-
-    /**
-     * @var URI
-     */
-    private $uri;
-
-    /**
-     * FileStream constructor.
-     * @param URI $uri
-     */
-    public function __construct(URI $uri)
+    public function __construct(URI $uri, $timeout = 30)
     {
-        $this->uri = $uri;
-    }
-
-    function close()
-    {
-        // TODO: Implement close() method.
-    }
-
-    function getErrorCode(): int
-    {
-        // TODO: Implement getErrorCode() method.
-    }
-
-    function getErrorMessage(): string
-    {
-        // TODO: Implement getErrorMessage() method.
-    }
-
-    /**
-     * @param array $buffer
-     * @return void
-     */
-    function read(array &$buffer)
-    {
-        // TODO: Implement read() method.
+        parent::__construct(fopen((string) $uri, "r"), $timeout);
     }
 }

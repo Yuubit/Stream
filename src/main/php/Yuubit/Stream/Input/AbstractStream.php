@@ -49,6 +49,14 @@ abstract class AbstractStream implements IInputStream
     /**
      * {@inheritdoc}
      */
+    public function eof(): bool
+    {
+        return feof($this->stream);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     function read(int $bytes): array
     {
         if(($received = fread($this->stream, $bytes)) === false) {

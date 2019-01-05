@@ -16,4 +16,10 @@ interface IInputStream extends IClosable, IEvaluatable
      * @return array
      */
     function read(int $bytes): array;
+
+    /**
+     * Determines whether the end of the stream has been reached.
+     * @return bool
+     */
+    function eof(): bool;
 }

@@ -32,6 +32,7 @@ class HTTPStreamTest extends TestCase
     function testRead()
     {
         $buff = $this->stream->read(1024);
-        self::assertEquals("<", $buff[0]);
+        $string = implode("", $buff);
+        self::assertStringStartsWith("<!doctype html>", $string);
     }
 }
