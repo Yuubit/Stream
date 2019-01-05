@@ -14,7 +14,6 @@ use Yuubit\Stream\Output\SocketStream;
 
 class SocketStreamTest extends TestCase
 {
-    const URL = "tcp:google.de";
 
     //TODO: Try to open output and input socket and write from input to output
 
@@ -24,11 +23,9 @@ class SocketStreamTest extends TestCase
 
     protected function setUp()
     {
-        $this->outputStream = new SocketStream()
     }
 
     function testWrite(){
-        $stream = new HTTPOutputStream;
 
     }
 
