@@ -13,5 +13,16 @@ use PHPUnit\Framework\TestCase;
 
 class BufferedStreamReaderTest extends TestCase
 {
+    private $reader;
 
+    private $inputStream;
+
+    protected function setUp()
+    {
+    }
+
+    function testRead()
+    {
+
+    }
 }
