@@ -67,6 +67,19 @@ class BufferedStreamReader implements IStreamReader
 
     function readAll(): string
     {
-        // TODO: Implement readAll() method.
+        while(!$this->end()) {
+            $this->readLine();
+        }
+
+        return $this->tmp;
+    }
+
+    /**
+     * Determines whether something (probably a stream) has reached its end.
+     * @return bool True when the end was reached false if not.
+     */
+    public function end(): bool
+    {
+        return $this->inputStream->end();
     }
 }

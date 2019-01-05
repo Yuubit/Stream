@@ -9,7 +9,7 @@
 namespace Yuubit\Stream;
 
 
-interface IStreamReader extends IClosable, IEvaluatable
+interface IStreamReader extends IClosable, IEvaluatable, IEndable
 {
     function readLine(): string;
     function readAll(): string;

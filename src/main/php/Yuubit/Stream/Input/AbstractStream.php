@@ -49,7 +49,7 @@ abstract class AbstractStream implements IInputStream
     /**
      * {@inheritdoc}
      */
-    public function eof(): bool
+    public function end(): bool
     {
         return feof($this->stream);
     }
