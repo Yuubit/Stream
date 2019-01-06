@@ -19,6 +19,7 @@ class OutputStream implements IOutputStream
      * @var mixed
      */
     private $stream;
+
     protected $errorCode;
     protected $errorMsg;
 
