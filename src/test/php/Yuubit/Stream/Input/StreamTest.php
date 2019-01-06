@@ -26,7 +26,13 @@ class StreamTest extends TestCase
     protected function setUp()
     {
         $uri = URI::fromString(self::URI);
-        $this->stream = StreamFactory::createInputStream($uri);
+        $this->stream = new InputStream(
+            fopen((string)$uri, "r", false, stream_context_create([
+                'https' => [
+                    'method' => "GET"
+                ]
+            ]))
+        );
     }
 
     function testRead()

@@ -9,7 +9,7 @@
 namespace Yuubit\Stream;
 
 
-interface IInputStream extends IClosable, IEvaluatable, IEndable
+interface IInputStream extends IClosable, IEvaluatable, IEndable, IInspectable
 {
     /**
      * @param int $bytes The amount of bytes to be read

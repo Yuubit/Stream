@@ -26,11 +26,7 @@ class StreamFactory
 
     private static function createHttpInputStream(URI $uri)
     {
-        $context = stream_context_create([
-            'http' => [
-                'method' => "GET"
-            ]
-        ]);
+        $context = stream_context_create();
 
         return new InputStream(fopen((string)$uri, "r", false, $context));
     }

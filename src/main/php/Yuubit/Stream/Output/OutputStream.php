@@ -13,7 +13,7 @@ use Yuubit\Stream\Exception\IOException;
 use Yuubit\Stream\IInputStream;
 use Yuubit\Stream\IOutputStream;
 
-class Stream implements IOutputStream
+class OutputStream implements IOutputStream
 {
     /**
      * @var mixed
@@ -58,5 +58,14 @@ class Stream implements IOutputStream
 
             throw new IOException($this);
         }
+    }
+
+    /**
+     * Gives you metadata in form of an array.
+     * @return array
+     */
+    function getMeta(): array
+    {
+        // TODO: Implement getMeta() method.
     }
 }

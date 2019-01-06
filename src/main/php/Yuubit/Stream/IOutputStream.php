@@ -11,7 +11,7 @@ namespace Yuubit\Stream;
 
 use Yuubit\Stream\Exception\IOException;
 
-interface IOutputStream extends IClosable, IEvaluatable
+interface IOutputStream extends IClosable, IEvaluatable, IInspectable
 {
     /**
      * Write onto output stream.
