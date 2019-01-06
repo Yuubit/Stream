@@ -9,11 +9,18 @@
 namespace Yuubit\Stream;
 
 
-interface IInputStream extends IClosable, IEvaluatable, IEndable, IInspectable
+interface IInputStream extends IClosable, IEndable, IInspectable, IBufferable
 {
     /**
+     * Reads specified number of bytes into an array.
      * @param int $bytes The amount of bytes to be read
      * @return array
      */
-    function read(int $bytes): array;
+    function readBytes(int $bytes): array;
+
+    /**
+     * Reads only the next character.
+     * @return string
+     */
+    function readChar(): string;
 }

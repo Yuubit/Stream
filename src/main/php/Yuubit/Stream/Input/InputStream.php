@@ -10,53 +10,37 @@ namespace Yuubit\Stream\Input;
 
 
 use Yuubit\Stream\Exception\IOException;
+use Yuubit\Stream\IPointable;
+use Yuubit\Stream\IBufferable;
+use Yuubit\Stream\IClosable;
+use Yuubit\Stream\IEndable;
 use Yuubit\Stream\IInputStream;
+use Yuubit\Stream\IInspectable;
+use Yuubit\Stream\IOutputStream;
 
+/**
+ * Class Stream
+ * @package Yuubit\Stream\Input
+ */
 class InputStream implements IInputStream
 {
-
     protected $stream;
 
-    protected $errorMessage;
-
-    protected $errorCode;
-
-    protected static $readableModes = array(
-        'r', 'r+', 'w+', 'a+', 'x+', 'c+', 'rb', 'r+b', 'w+b', 'a+b', 'x+b', 'c+b', 'rt', 'r+t', 'w+t', 'a+t', 'x+t', 'c+t'
-    );
+    protected $bufferSize;
 
     /**
      * AbstractStream constructor.
      * @param $stream
      */
-    public function __construct($stream)
+    public function __construct($stream, $bufferSize = 1024)
     {
         $this->stream = $stream;
-        $this->validate();
-    }
-
-    private function validate() {
-        if(!in_array($this->getMeta()['mode'], self::$readableModes)) {
-            $this->errorCode = 2;
-            $this->errorMessage = "Non readable InputStream with mode: " . $this->getMeta()['mode'];
-
-            throw new IOException($this);
-        }
+        $this->setBufferSize($bufferSize);
     }
 
     function close()
     {
         fclose($this->stream);
-    }
-
-    function getErrorCode(): int
-    {
-        return $this->errorCode;
-    }
-
-    function getErrorMessage(): string
-    {
-        return $this->errorMessage;
     }
 
     /**
@@ -70,23 +54,22 @@ class InputStream implements IInputStream
     /**
      * {@inheritdoc}
      */
-    function read(int $bytes): array
+    function readBytes(int $bytes): array
     {
         if(($received = fread($this->stream, $bytes)) === false) {
-            $this->errorCode = error_get_last()['type'];
-            $this->errorMessage = error_get_last()['message'];
-
-            throw new IOException($this);
+            throw new IOException(error_get_last()['message'], error_get_last()['type']);
         }
 
         if($this->getMeta()['timed_out']) {
-            $this->errorCode = 1;
-            $this->errorMessage = "Timed Out!";
-
-            throw new IOException($this);
+            throw new IOException("Timed Out!", 1);
         }
 
         return str_split($received, 1);
+    }
+
+    function readChar(): string
+    {
+        return $this->readBytes(1)[0];
     }
 
     /**
@@ -96,5 +79,26 @@ class InputStream implements IInputStream
     function getMeta(): array
     {
         return stream_get_meta_data($this->stream);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    function setBufferSize(int $size)
+    {
+        if(stream_set_read_buffer($this->stream, $size) !== 0) {
+            throw new IOException("Could not change io buffer size.");
+        }
+
+        $this->bufferSize = $size;
+    }
+
+    function getBufferSize(): int
+    {
+        return $this->bufferSize;
+    }
+
+    function flush()
+    {
     }
 }

@@ -26,9 +26,11 @@ class BufferedStreamReader implements IStreamReader
     private $bufferSize;
 
     /**
-     * @var string;
+     * @var array;
      */
-    private $tmp;
+    private $buffer;
+
+    private $pos = 0;
 
     /**
      * BufferedStreamReader constructor.
@@ -41,42 +43,33 @@ class BufferedStreamReader implements IStreamReader
         $this->bufferSize = $bufferSize;
     }
 
-    function close()
-    {
-        $this->inputStream->close();
-    }
-
-    function getErrorCode(): int
-    {
-        $this->inputStream->getErrorCode();
-    }
-
-    function getErrorMessage(): string
-    {
-        $this->inputStream->getErrorMessage();
-    }
-
     function readLine(): string
     {
-        while(strpos($this->tmp, PHP_EOL)) {
-            $this->tmp .= implode("", $this->inputStream->read($this->bufferSize));
+        if(!empty($this->buffer)) {
+            if(($nextEOL = strpos(($data = implode("", $this->buffer)), PHP_EOL, $this->pos)) !== false) {
+                $line = substr($data, $this->pos, $nextEOL);
+                $this->pos = $nextEOL;
+
+                return $line;
+            }
         }
 
-        return explode(PHP_EOL, $this->tmp)[0];
-    }
+        $line = "";
 
-    function readAll(): string
-    {
-        while(!$this->end()) {
-            $this->readLine();
+        while (
+            strpos(($data = implode("", ($this->buffer = $this->inputStream->readBytes($this->bufferSize)))), PHP_EOL) === false &&
+            !$this->inputStream->end()
+        ) {
+            $line .= $data;
         }
 
-        return $this->tmp;
+        $line .= str_split($data, strpos($data, PHP_EOL))[0];
+
+        return $line;
     }
 
     /**
-     * Determines whether something (probably a stream) has reached its end.
-     * @return bool True when the end was reached false if not.
+     * {@inheritdoc}
      */
     public function end(): bool
     {

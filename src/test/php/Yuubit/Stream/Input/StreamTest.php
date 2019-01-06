@@ -32,9 +32,9 @@ class StreamTest extends TestCase
         );
     }
 
-    function testRead()
+    function testReadBytes()
     {
-        $buff = $this->stream->read(1024);
+        $buff = $this->stream->readBytes(1024);
         $string = implode("", $buff);
         self::assertStringStartsWith("<!doctype html>", $string);
     }

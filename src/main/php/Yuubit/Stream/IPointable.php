@@ -26,5 +26,5 @@ interface IPointable
 
     function rewind(): bool;
 
-    function pos(): int;
+    function tell(): int;
 }
