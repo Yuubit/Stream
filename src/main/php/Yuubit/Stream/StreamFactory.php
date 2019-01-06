@@ -8,24 +8,35 @@
 
 namespace Yuubit\Stream;
 
-
-use Yuubit\Stream\Input\FileStream;
-use Yuubit\Stream\Input\HTTPStream;
-use Yuubit\Stream\Input\SocketStream;
+use Yuubit\Stream\Input\InputStream;
 use Yuubit\URI\URI;
 
 class StreamFactory
 {
-    public static function createInputStream(URI $uri): IInputStream {
+    public static function createInputStream(URI $uri): IInputStream
+    {
         switch ($uri->getScheme()) {
             case "http":
             case "https":
-                return new HTTPStream($uri);
-            case "tcp":
-            case "udp":
-                return new SocketStream($uri);
+                return self::createHttpInputStream($uri);
             default:
-                return new FileStream($uri);
+                return self::createFileInputStream($uri);
         }
+    }
+
+    private static function createHttpInputStream(URI $uri)
+    {
+        $context = stream_context_create([
+            'http' => [
+                'method' => "GET"
+            ]
+        ]);
+
+        return new InputStream(fopen((string)$uri, "r", false, $context));
+    }
+
+    private static function createFileInputStream(URI $uri)
+    {
+        return new InputStream(fopen((string)$uri, "r", false));
     }
 }

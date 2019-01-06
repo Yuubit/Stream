@@ -11,9 +11,10 @@ namespace Yuubit\Stream\Input;
 
 use PHPUnit\Framework\TestCase;
 use Yuubit\Stream\IInputStream;
+use Yuubit\Stream\StreamFactory;
 use Yuubit\URI\URI;
 
-class HTTPStreamTest extends TestCase
+class StreamTest extends TestCase
 {
     const URI = "http://www.google.com:80";
 
@@ -25,9 +26,8 @@ class HTTPStreamTest extends TestCase
     protected function setUp()
     {
         $uri = URI::fromString(self::URI);
-        $this->stream = new HTTPStream($uri);
+        $this->stream = StreamFactory::createInputStream($uri);
     }
-
 
     function testRead()
     {

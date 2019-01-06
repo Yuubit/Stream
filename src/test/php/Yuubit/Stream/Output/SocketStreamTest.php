@@ -10,23 +10,22 @@ namespace Yuubit\Stream\Output;
 
 
 use PHPUnit\Framework\TestCase;
-use Yuubit\Stream\Output\SocketStream;
 
-class SocketStreamTest extends TestCase
-{
-
-    //TODO: Try to open output and input socket and write from input to output
-
-    private $outputStream;
-
-    private $inputStream;
-
-    protected function setUp()
-    {
-    }
-
-    function testWrite(){
-
-    }
-
-}
+//class SocketStreamTest extends TestCase
+//{
+//
+//    //TODO: Try to open output and input socket and write from input to output
+//
+//    private $outputStream;
+//
+//    private $inputStream;
+//
+//    protected function setUp()
+//    {
+//    }
+//
+//    function testWrite(){
+//
+//    }
+//
+//}

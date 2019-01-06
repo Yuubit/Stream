@@ -11,18 +11,18 @@ namespace Yuubit\Stream\Reader;
 
 use PHPUnit\Framework\TestCase;
 
-class BufferedStreamReaderTest extends TestCase
-{
-    private $reader;
-
-    private $inputStream;
-
-    protected function setUp()
-    {
-    }
-
-    function testRead()
-    {
-
-    }
-}
+//class BufferedStreamReaderTest extends TestCase
+//{
+//    private $reader;
+//
+//    private $inputStream;
+//
+//    protected function setUp()
+//    {
+//    }
+//
+//    function testRead()
+//    {
+//
+//    }
+//}

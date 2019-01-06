@@ -12,7 +12,7 @@ namespace Yuubit\Stream\Input;
 use Yuubit\Stream\Exception\IOException;
 use Yuubit\Stream\IInputStream;
 
-abstract class AbstractStream implements IInputStream
+class Stream implements IInputStream
 {
 
     protected $stream;

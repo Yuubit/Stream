@@ -11,6 +11,6 @@ namespace Yuubit\Stream\Writer;
 
 use PHPUnit\Framework\TestCase;
 
-class BufferedWriterTest extends TestCase
-{
-}
+//class BufferedWriterTest extends TestCase
+//{
+//}

@@ -13,7 +13,7 @@ use Yuubit\Stream\Exception\IOException;
 use Yuubit\Stream\IInputStream;
 use Yuubit\Stream\IOutputStream;
 
-abstract class AbstractStream implements IOutputStream
+class Stream implements IOutputStream
 {
     /**
      * @var mixed
