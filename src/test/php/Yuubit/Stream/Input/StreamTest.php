@@ -11,8 +11,6 @@ namespace Yuubit\Stream\Input;
 
 use PHPUnit\Framework\TestCase;
 use Yuubit\Stream\IInputStream;
-use Yuubit\Stream\StreamFactory;
-use Yuubit\URI\URI;
 
 class StreamTest extends TestCase
 {
@@ -25,7 +23,6 @@ class StreamTest extends TestCase
 
     protected function setUp()
     {
-        $uri = URI::fromString(self::URI);
         $this->stream = new InputStream(
             fopen(self::URI, "r", false, stream_context_create([
                 'https' => [
