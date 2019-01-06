@@ -27,7 +27,7 @@ class StreamTest extends TestCase
     {
         $uri = URI::fromString(self::URI);
         $this->stream = new InputStream(
-            fopen((string)$uri, "r", false, stream_context_create([
+            fopen(self::URI, "r", false, stream_context_create([
                 'https' => [
                     'method' => "GET"
                 ]
