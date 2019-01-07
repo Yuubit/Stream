@@ -9,7 +9,7 @@
 namespace Yuubit\Stream;
 
 
-interface IInputStream extends IClosable, IEndable, IInspectable, IBufferable
+interface IInputStream extends IClosable, IEndable, IInspectable
 {
     /**
      * Reads specified number of bytes into an array.

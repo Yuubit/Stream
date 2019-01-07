@@ -26,16 +26,13 @@ class InputStream implements IInputStream
 {
     protected $stream;
 
-    protected $bufferSize;
-
     /**
      * AbstractStream constructor.
      * @param $stream
      */
-    public function __construct($stream, $bufferSize = 1024)
+    public function __construct($stream)
     {
         $this->stream = $stream;
-        $this->setBufferSize($bufferSize);
     }
 
     function close()
@@ -79,26 +76,5 @@ class InputStream implements IInputStream
     function getMeta(): array
     {
         return stream_get_meta_data($this->stream);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    function setBufferSize(int $size)
-    {
-        if(stream_set_read_buffer($this->stream, $size) !== 0) {
-            throw new IOException("Could not change io buffer size.");
-        }
-
-        $this->bufferSize = $size;
-    }
-
-    function getBufferSize(): int
-    {
-        return $this->bufferSize;
-    }
-
-    function flush()
-    {
     }
 }
