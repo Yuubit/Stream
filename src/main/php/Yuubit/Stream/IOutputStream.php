@@ -11,7 +11,7 @@ namespace Yuubit\Stream;
 
 use Yuubit\Stream\Exception\IOException;
 
-interface IOutputStream
+interface IOutputStream extends IClosable, IInspectable
 {
     /**
      * Write onto output stream.
@@ -20,9 +20,4 @@ interface IOutputStream
      * @throws IOException
      */
     function writeBytes(array $buffer);
-
-    function writeLine(string $line);
-
-    function writeChar(string $char);
-
 }

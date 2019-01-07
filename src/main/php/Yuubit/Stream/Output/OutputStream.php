@@ -20,8 +20,7 @@ class OutputStream implements IOutputStream
      */
     private $stream;
 
-    protected $errorCode;
-    protected $errorMsg;
+    protected $bufferSize;
 
     /**
      * AbstractStream constructor.
@@ -37,36 +36,26 @@ class OutputStream implements IOutputStream
         fclose($this->stream);
     }
 
-    function getErrorCode(): int
-    {
-        return $this->errorCode;
-    }
-
-    function getErrorMessage(): string
-    {
-        return $this->errorMsg;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    function write(array $buffer)
-    {
-        //maybe try with (string)$buffer instead of implode()
-        if (fwrite($this->stream, implode("", $buffer)) === false) {
-            $this->errorCode = error_get_last()['type'];
-            $this->errorMsg = error_get_last()['message'];
-
-            throw new IOException($this);
-        }
-    }
-
     /**
      * Gives you metadata in form of an array.
      * @return array
      */
     function getMeta(): array
     {
-        // TODO: Implement getMeta() method.
+        return stream_get_meta_data($this->stream);
+    }
+
+    /**
+     * Write onto output stream.
+     * @param $buffer array Output buffer
+     * @return void
+     * @throws IOException
+     */
+    function writeBytes(array $buffer)
+    {
+        //maybe try with (string)$buffer instead of implode()
+        if (fwrite($this->stream, implode("", $buffer)) === false) {
+            throw new IOException(error_get_last()['message'], error_get_last()['type']);
+        }
     }
 }
