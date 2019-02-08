@@ -11,6 +11,13 @@ namespace Yuubit\Stream;
 
 interface IEvaluatable
 {
-    function getErrorCode(): int;
-    function getErrorMessage(): string;
+    /**
+     * @return int
+     */
+    function getErrorCode();
+
+    /**
+     * @return string
+     */
+    function getErrorMessage();
 }

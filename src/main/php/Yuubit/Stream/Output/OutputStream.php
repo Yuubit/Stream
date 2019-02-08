@@ -40,7 +40,7 @@ class OutputStream implements IOutputStream
      * Gives you metadata in form of an array.
      * @return array
      */
-    function getMeta(): array
+    function getMeta()
     {
         return stream_get_meta_data($this->stream);
     }

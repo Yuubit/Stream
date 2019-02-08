@@ -15,5 +15,5 @@ interface IInspectable
      * Gives you metadata in form of an array.
      * @return array
      */
-    function getMeta(): array;
+    function getMeta();
 }

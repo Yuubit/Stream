@@ -15,5 +15,5 @@ interface IEndable
      * Determines whether something (probably a stream) has reached its end.
      * @return bool True when the end was reached false if not.
      */
-    public function end(): bool;
+    public function end();
 }

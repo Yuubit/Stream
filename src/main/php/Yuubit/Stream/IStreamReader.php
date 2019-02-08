@@ -15,5 +15,5 @@ interface IStreamReader extends IEndable
      * Reads a line as text.
      * @return string
      */
-    function readLine(): string;
+    function readLine();
 }

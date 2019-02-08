@@ -37,13 +37,16 @@ class BufferedStreamReader implements IStreamReader
      * @param IInputStream $inputStream
      * @param int $bufferSize
      */
-    public function __construct(IInputStream $inputStream, int $bufferSize = 1024)
+    public function __construct(IInputStream $inputStream, $bufferSize = 1024)
     {
         $this->inputStream = $inputStream;
         $this->bufferSize = $bufferSize;
     }
 
-    function readLine(): string
+    /**
+     * @{inheritdoc}
+     */
+    function readLine()
     {
         if(!empty($this->buffer)) {
             if(($nextEOL = strpos(($data = implode("", $this->buffer)), PHP_EOL, $this->pos)) !== false) {

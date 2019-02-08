@@ -22,9 +22,20 @@ interface IPointable
 
     const SEEK_END = SEEK_END;
 
-    function seek(int $offset, int $whence): bool;
+    /**
+     * @param int $offset
+     * @param int $whence
+     * @return bool
+     */
+    function seek(int $offset, int $whence);
 
-    function rewind(): bool;
+    /**
+     * @return bool
+     */
+    function rewind();
 
-    function tell(): int;
+    /**
+     * @return int
+     */
+    function tell();
 }
