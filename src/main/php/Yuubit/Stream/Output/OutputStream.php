@@ -51,7 +51,7 @@ class OutputStream implements IOutputStream
      * @return void
      * @throws IOException
      */
-    function writeBytes(array $buffer)
+    function writeBytes($buffer)
     {
         //maybe try with (string)$buffer instead of implode()
         if (fwrite($this->stream, implode("", $buffer)) === false) {

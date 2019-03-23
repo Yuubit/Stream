@@ -19,5 +19,5 @@ interface IOutputStream extends IClosable, IInspectable
      * @return void
      * @throws IOException
      */
-    function writeBytes(array $buffer);
+    function writeBytes($buffer);
 }

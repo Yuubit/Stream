@@ -51,7 +51,7 @@ class InputStream implements IInputStream
     /**
      * {@inheritdoc}
      */
-    function readBytes(int $bytes): array
+    function readBytes($bytes)
     {
         if(($received = fread($this->stream, $bytes)) === false) {
             throw new IOException(error_get_last()['message'], error_get_last()['type']);
@@ -73,7 +73,7 @@ class InputStream implements IInputStream
      * Gives you metadata in form of an array.
      * @return array
      */
-    function getMeta(): array
+    function getMeta()
     {
         return stream_get_meta_data($this->stream);
     }

@@ -11,11 +11,19 @@ namespace Yuubit\Stream;
 
 interface IBufferable
 {
-    function setBufferSize(int $size);
+    /**
+     * @param int $size
+     * @return void
+     */
+    function setBufferSize($size);
 
     /**
      * @return int
      */
     function getBufferSize();
+
+    /**
+     * @return void
+     */
     function flush();
 }

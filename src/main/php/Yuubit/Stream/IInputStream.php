@@ -16,7 +16,7 @@ interface IInputStream extends IClosable, IEndable, IInspectable
      * @param int $bytes The amount of bytes to be read
      * @return array
      */
-    function readBytes(int $bytes);
+    function readBytes($bytes);
 
     /**
      * Reads only the next character.

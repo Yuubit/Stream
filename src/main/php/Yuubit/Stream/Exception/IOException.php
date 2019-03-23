@@ -15,7 +15,7 @@ use Yuubit\Stream\IEvaluatable;
 
 class IOException extends Exception
 {
-    public function __construct(string $errorMessage, $errorCode = 0, Throwable $previous = null)
+    public function __construct($errorMessage, $errorCode = 0, Throwable $previous = null)
     {
         parent::__construct($errorMessage, $errorCode, $previous);
     }
