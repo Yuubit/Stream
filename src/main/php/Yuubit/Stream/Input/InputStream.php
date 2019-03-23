@@ -64,7 +64,7 @@ class InputStream implements IInputStream
         return str_split($received, 1);
     }
 
-    function readChar(): string
+    function readChar()
     {
         return $this->readBytes(1)[0];
     }
