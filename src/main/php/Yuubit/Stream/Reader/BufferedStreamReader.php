@@ -74,7 +74,7 @@ class BufferedStreamReader implements IStreamReader
     /**
      * {@inheritdoc}
      */
-    public function end(): bool
+    public function end()
     {
         return $this->inputStream->end();
     }

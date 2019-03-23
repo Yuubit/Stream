@@ -43,7 +43,7 @@ class InputStream implements IInputStream
     /**
      * {@inheritdoc}
      */
-    public function end(): bool
+    public function end()
     {
         return feof($this->stream);
     }
